@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace Chau - UI/UX Designer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%232d5f3f'/><text x='50' y='50' font-family='Arial, sans-serif' font-size='45' font-weight='bold' text-anchor='middle' dominant-baseline='central' fill='white'>GC</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(-45deg, #f8fdfb, #f0f7f4, #e8f5f0, #f0f7f4);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(to right, #2d5f3f, #7cb89d);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #2d5f3f;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s, background 0.3s;
+            z-index: 999;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background: #7cb89d;
+            color: #1a1a1a;
+        }
+
+        .project-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e8f5e9;
+        }
+
+        body.dark-mode .project-navigation {
+            border-top-color: #3a3a3a;
+        }
+
+        .nav-project {
+            text-decoration: none;
+            color: #2d5f3f;
+            padding: 1rem 2rem;
+            border: 2px solid #2d5f3f;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-project:hover {
+            background: #2d5f3f;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .nav-project.prev:hover {
+            transform: translateX(-5px);
+        }
+
+        body.dark-mode .nav-project {
+            color: #7cb89d;
+            border-color: #7cb89d;
+        }
+
+        body.dark-mode .nav-project:hover {
+            background: #7cb89d;
+            color: #1a1a1a;
+        }
+
+        .availability-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2d5f3f;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(-45deg, #1a2e20, #0d1f14, #243329, #1a2e20);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .availability-badge {
+            background: #2d5f3f;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode header {
+            background: #2d2d2d;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .logo {
+            color: #7cb89d;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .nav-links a:hover {
+            color: #7cb89d;
+        }
+
+        body.dark-mode .hero h1,
+        body.dark-mode .section-title,
+        body.dark-mode .about-text h2,
+        body.dark-mode .modal-title,
+        body.dark-mode .case-study-section h3,
+        body.dark-mode .skill-category h3,
+        body.dark-mode .project-title {
+            color: #7cb89d;
+        }
+
+        body.dark-mode .hero p,
+        body.dark-mode .hero-subtitle,
+        body.dark-mode .about-text p,
+        body.dark-mode .project-description,
+        body.dark-mode .project-meta,
+        body.dark-mode .case-study-section p,
+        body.dark-mode .case-study-section ul,
+        body.dark-mode .skill-category p,
+        body.dark-mode .modal-subtitle {
+            color: #c0c0c0;
+        }
+
+        body.dark-mode .project-card,
+        body.dark-mode .about,
+        body.dark-mode .modal-content {
+            background: rgba(26, 46, 32, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode .project-card:hover {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+        }
+
+        body.dark-mode .btn-primary {
+            background: #2d5f3f;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .btn-secondary {
+            background: transparent;
+            color: #7cb89d;
+            border-color: #7cb89d;
+        }
+
+        body.dark-mode .tag {
+            background: #3a3a3a;
+            color: #7cb89d;
+        }
+
+        body.dark-mode .highlight-box {
+            background: #3a3a3a;
+            border-left-color: #7cb89d;
+        }
+
+        body.dark-mode .highlight-box strong {
+            color: #7cb89d;
+        }
+
+        body.dark-mode .close-modal {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .close-modal:hover {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode footer {
+            background: #1a1a1a;
+        }
+
+        body.dark-mode .contact-btn {
+            background: #2d5f3f;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background: #7cb89d;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d5f3f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #7cb89d;
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124,184,157,0.3) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(90deg); }
+            50% { transform: translate(0, -60px) rotate(180deg); }
+            75% { transform: translate(-30px, -30px) rotate(270deg); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #2d5f3f;
+            animation: slideInFromLeft 1s ease 0.3s backwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            animation: slideInFromRight 1s ease 0.5s backwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: #999;
+            animation: fadeIn 1s ease 0.7s backwards;
+        }
+
+        .availability-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2d5f3f;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            animation: popIn 0.6s ease 0.9s backwards;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            80% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease 1.1s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #2d5f3f;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: #999;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #2d5f3f;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2d5f3f;
+            border: 2px solid #2d5f3f;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .about {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(124,184,157,0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: #2d5f3f;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category h3 {
+            color: #2d5f3f;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-category p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .projects {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #2d5f3f;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2d5f3f;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #e8f5e9;
+            color: #2d5f3f;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .modal.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 3rem;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            color: #2d5f3f;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .case-study-section {
+            margin-bottom: 3rem;
+        }
+
+        .case-study-section h3 {
+            font-size: 1.8rem;
+            color: #2d5f3f;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-section p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-section ul {
+            color: #666;
+            line-height: 1.8;
+            margin-left: 1.5rem;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .case-study-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .case-study-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            padding: 2rem;
+            overflow: auto;
+        }
+
+        .image-lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 2001;
+            transition: transform 0.3s;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 2rem;
+        }
+
+        .lightbox-next {
+            right: 2rem;
+        }
+
+        .lightbox-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .lightbox-nav:disabled:hover {
+            transform: translateY(-50%) scale(1);
+            background: rgba(0,0,0,0.5);
+        }
+
+        .figma-embed {
+            width: 100%;
+            height: 600px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .highlight-box {
+            background: #e8f5e9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #7cb89d;
+            margin: 2rem 0;
+        }
+
+        .highlight-box strong {
+            color: #2d5f3f;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: #2d5f3f;
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+
+        .footer-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #2d5f3f;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <button class="dark-mode-toggle" id="dark-mode-toggle" onclick="toggleDarkMode()">◐</button>
+    
+    <header>
+        <nav class="container">
+            <div class="logo">Grace Chau</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Grace Chau</h1>
+            <p>UI/UX Designer at Northeastern University</p>
+            <p class="hero-subtitle">Crafting thoughtful digital experiences through research-driven design</p>
+            <div class="availability-badge">📅 Available for Co-op: January – June 2026</div>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#about" class="btn btn-secondary">About Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card" onclick="openModal('planet-pesto')">
+                    <img src="images/PPPI4.png" alt="Planet Pesto Character Interaction" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Planet Pesto</h3>
+                        <p class="project-meta">UI & Level Designer | June 2025 – July 2025</p>
+                        <p class="project-description">Created UI assets and co-designed platformer game levels for a Unity-based climate action game that placed 14th out of 34 entries in IndieCade's 2025 Climate Jam.</p>
+                        <div class="project-tags">
+                            <span class="tag">Game Design</span>
+                            <span class="tag">UI Design</span>
+                            <span class="tag">Adobe Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openModal('greenway')">
+                    <img src="images/GreenWayLogo.png" alt="GreenWay Logo" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">GreenWay</h3>
+                        <p class="project-meta">UX Researcher & Designer | February 2025 – March 2025</p>
+                        <p class="project-description">Designed a mobile app to solve Boston MBTA Green Line commuter pain points including delays, capacity issues, and navigation challenges through real-time updates and wayfinding.</p>
+                        <div class="project-tags">
+                            <span class="tag">UX Research</span>
+                            <span class="tag">Mobile Design</span>
+                            <span class="tag">Figma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openModal('sleep-survey')">
+                    <img src="images/SLogo.png" alt="Sleep Survey Logo" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Sleep Survey</h3>
+                        <p class="project-meta">UX Researcher & Designer | March 2025 – April 2025</p>
+                        <p class="project-description">Researched sleep stressors and designed a dream documentation and analysis app to help users improve rest and wellbeing through sleep journaling.</p>
+                        <div class="project-tags">
+                            <span class="tag">UX Research</span>
+                            <span class="tag">Mobile Design</span>
+                            <span class="tag">Figma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/headshot.JPG" alt="Grace Chau headshot">
+                </div>
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <p>Hi! I'm Grace, a Computer Science and Design student at Northeastern University with a passion for creating intuitive, user-centered digital experiences.</p>
+                    <p>I believe great design happens at the intersection of creativity, innovation, and user research. I always aim to approach every project with curiousity, the willingness to learn, and attention to detail.</p>
+                    <p>When I'm not designing, I love exploring Boston with my camera, playing tennis, and discovering new music.</p>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Design Tools</h3>
+                            <p>Figma, Adobe Illustrator, Adobe InDesign, Adobe Lightroom, Adobe Photoshop</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Development</h3>
+                            <p>Java, Python, Racket</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Design Skills</h3>
+                            <p>UX Research, Wireframing, Prototyping, UI Design, Game Design</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Education</h3>
+                            <p>Northeastern University<br>BS in Computer Science & Design<br>GPA: 3.6/4.0<br>Expected Graduation: May 2028</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="planet-pesto-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('planet-pesto')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Planet Pesto</h2>
+                <p class="modal-subtitle">UI & Level Designer | June 2025 – July 2025</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Project Overview</h3>
+                <p>Planet Pesto is a 2D narrative-driven platformer developed for IndieCade's 2025 Climate Jam. The game explores climate change through the lens of a small robot named I.R.I.S., who discovers that humans are making Earth uninhabitable for themselves through pollution.</p>
+                <p>Players navigate through various landscapes on a living planet, facing natural disasters like wildfires, while uncovering the truth behind the planet's breakdown through conversations with an ancient being called The Creature.</p>
+                <div class="highlight-box">
+                    <strong>Achievement:</strong> 14th place out of 34 entries in IndieCade's 2025 Climate Jam competition<br>
+                    <a href="https://olivia-presser.itch.io/planet-pesto" target="_blank" style="color: #2d5f3f; font-weight: 600; text-decoration: underline;">Play the game on itch.io →</a>
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>My Role</h3>
+                <p>As part of a 10-person interdisciplinary team, I served as both UI Designer and Level Designer:</p>
+                <ul>
+                    <li>Created 4 UI assets in Adobe Illustrator with a cohesive steampunk-inspired aesthetic</li>
+                    <li>Co-designed 4 platformer game levels featuring obstacles related to climate disasters</li>
+                    <li>Led weekly level design team meetings to brainstorm, draft, and refine level designs</li>
+                    <li>Incorporated peer and playtester feedback through iterative design sprints</li>
+                </ul>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Game Concept & Story</h3>
+                <p>The core message of Planet Pesto addresses a critical reframe: we're not killing the Earth, we're making it uninhabitable for ourselves. Players experience this through I.R.I.S.'s journey, starting in Alina and Olean's shop, riding the tram to hear citizens discuss climate impacts, and venturing into the wilderness to face increasingly severe disasters.</p>
+                <p>The gameplay loop alternates between natural disasters (hurricanes, floods) on the outward journey and unnatural disasters (acid rain, pollution) on the return trip, each teaching players about different aspects of climate change through environmental storytelling.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Gameplay & Level Design</h3>
+                <p>The game features a charming steampunk-inspired aesthetic set in various environments, from lush forests to industrial interiors. Players navigate through platforming challenges while learning about climate action.</p>
+                <div class="image-grid">
+                    <video src="images/PHV.mp4" controls class="case-study-image" style="width: 100%;">
+                        Your browser does not support the video tag.
+                    </video>
+                    <img src="images/PPPI.png" alt="Outdoor level gameplay" class="case-study-image">
+                    <img src="images/PPPI2.png" alt="Indoor level with NPC" class="case-study-image">
+                    <img src="images/PPPI3.png" alt="Dialogue with farmer character" class="case-study-image">
+                    <img src="images/PPPI4.png" alt="Character interaction scene" class="case-study-image">
+                    <img src="images/PPPI5.png" alt="Platforming gameplay" class="case-study-image">
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>UI Design Process</h3>
+                <p>The UI design went through extensive iteration, exploring different menu layouts, pause screen designs, and in-game UI elements. The steampunk aesthetic was chosen to complement the game's environmental themes while maintaining clear usability.</p>
+                <div class="image-grid">
+                    <img src="images/UMC1.jpg" alt="Pause menu with decorative frame" class="case-study-image">
+                    <img src="images/UMC2.jpg" alt="Menu design iterations" class="case-study-image">
+                    <img src="images/UMC3.jpg" alt="Final menu concepts" class="case-study-image">
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Steam Gauge UI Element</h3>
+                <p>One of the key UI assets I designed was the steam gauge, which serves as a resource meter in the game. Multiple iterations explored different visual approaches, from circular gauges to horizontal bars, each maintaining the steampunk aesthetic.</p>
+                <div class="image-grid">
+                    <img src="images/SGC1.jpg" alt="Steam gauge circular designs" class="case-study-image">
+                    <img src="images/SGC2.jpg" alt="Vertical gauge variations" class="case-study-image">
+                    <img src="images/SGC3.jpg" alt="Additional UI elements" class="case-study-image">
+                    <img src="images/SGC4.jpg" alt="Horizontal gauge designs" class="case-study-image">
+                    <img src="images/SGC5.jpg" alt="Steam canister concepts" class="case-study-image">
+                    <img src="images/SGC6.jpg" alt="Final gauge iterations" class="case-study-image">
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Key Learnings</h3>
+                <p>This project taught me the importance of iterative design in game development, the value of playtesting early and often, and how to balance artistic vision with usability constraints in an interactive medium. Leading weekly team meetings also strengthened my collaboration and communication skills.</p>
+                <p>Working on a climate-focused narrative game reinforced how design can communicate complex issues through interactive storytelling. The challenge of making environmental disasters both challenging gameplay obstacles and meaningful narrative moments pushed me to think critically about how mechanics support themes.</p>
+            </div>
+
+            <div class="project-navigation">
+                <span></span>
+                <a href="#greenway-modal" class="nav-project next" onclick="event.preventDefault(); closeModal('planet-pesto'); openModal('greenway');">Next Project: GreenWay →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="greenway-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('greenway')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">GreenWay</h2>
+                <p class="modal-subtitle">UX Researcher & Designer | February 2025 – March 2025</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>The Problem</h3>
+                <p>Boston's MBTA Green Line commuters face numerous challenges including frequent delays, inconsistent train capacity, and difficulty navigating complex station layouts and surrounding areas. These pain points create stress and uncertainty for daily riders.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Research</h3>
+                <p>I conducted user research to identify key commuter pain points:</p>
+                <ul>
+                    <li>Unpredictable delays without clear communication</li>
+                    <li>Inconsistent train capacity leading to overcrowding</li>
+                    <li>Navigation challenges within stations and surrounding areas</li>
+                    <li>Lack of real-time service updates</li>
+                    <li>Difficulty planning alternative routes during disruptions</li>
+                </ul>
+            </div>
+
+            <div class="case-study-section">
+                <h3>The Solution</h3>
+                <p>GreenWay is a mobile app designed to improve the Green Line commuter experience through real-time service updates, train capacity indicators, and enhanced wayfinding features including AR navigation within stations.</p>
+                <div class="highlight-box">
+                    <strong>Key Features:</strong> Real-time delay notifications, train capacity visualization, station wayfinding, and route planning
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Key Screens</h3>
+                <div class="image-grid">
+                    <img src="images/GWHome.png" alt="GreenWay home screen with Green Line map" class="case-study-image">
+                    <img src="images/GWCopley.png" alt="Copley Station details and features" class="case-study-image">
+                    <img src="images/GWCap.png" alt="Train capacity visualization" class="case-study-image">
+                    <img src="images/GWNav.png" alt="Station navigation view" class="case-study-image">
+                    <img src="images/GWAR.png" alt="AR wayfinding feature" class="case-study-image">
+                    <img src="images/GWDelay.png" alt="Delay notification alert" class="case-study-image">
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Design Process</h3>
+                <p>The design evolved through three major iteration cycles, each incorporating peer feedback and collaborative problem-solving. Early wireframes focused on information hierarchy, while later iterations refined the visual design and interaction patterns to ensure critical information was immediately accessible during stressful commute situations.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Key Takeaways</h3>
+                <p>This project reinforced the importance of designing for real-world constraints and user stress. Features needed to be immediately accessible and understandable, especially during high-pressure commute situations. The iterative process allowed us to refine the interface based on actual user needs rather than assumptions.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Interactive Prototype</h3>
+                <p>Explore the full GreenWay prototype below:</p>
+                <iframe class="figma-embed" src="https://embed.figma.com/proto/ebv2tbKINsUIp0V0PGC1yz/GreenWay-App?node-id=2-859&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A859&embed-host=share" allowfullscreen></iframe>
+            </div>
+
+            <div class="project-navigation">
+                <a href="#planet-pesto-modal" class="nav-project prev" onclick="event.preventDefault(); closeModal('greenway'); openModal('planet-pesto');">← Previous: Planet Pesto</a>
+                <a href="#sleep-survey-modal" class="nav-project next" onclick="event.preventDefault(); closeModal('greenway'); openModal('sleep-survey');">Next Project: Sleep Survey →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="sleep-survey-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('sleep-survey')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Sleep Survey</h2>
+                <p class="modal-subtitle">UX Researcher & Designer | March 2025 – April 2025</p>
+                <p class="modal-subtitle">Team: Grace Chau, Kayla, Kaitlin, Amelie</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>The Problem</h3>
+                <p>College students and young professionals (ages 18-25) face two interconnected challenges: lack of mental clarity upon waking up and the need for dream reflection in today's stressful environment. Stress and emotions cause irregular sleep patterns that affect dreaming and cause grogginess, making it difficult to start the day productively.</p>
+                <div class="highlight-box">
+                    <strong>Target Users:</strong> College students and post-grads with irregular sleep patterns or high stress levels who want to understand how daily stressors affect their sleep
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Interaction Scenario</h3>
+                <p><em>A Northeastern student is exhausted from studying for finals and hasn't gotten much sleep recently. She wakes up from a nightmare and opens Sleep Survey as part of her morning routine. She logs her emotions upon waking up and writes briefly about her nightmare. The app prompts her with questions, and while answering them, she feels herself fully waking up. Satisfied with her log, she's now alert and ready to conquer her finals.</em></p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Research & Competitive Analysis</h3>
+                <p>I analyzed existing dream apps to identify opportunities for innovation:</p>
+                <ul>
+                    <li><strong>DreamApp:</strong> Uses algorithms and AI to analyze user input, provides dream symbol definitions</li>
+                    <li><strong>LucidScribe:</strong> Offers scientific tools for lucidity reactivation and dream incubation</li>
+                    <li><strong>Gap identified:</strong> No apps combined mental clarity enhancement with dream reflection specifically for stressed young adults</li>
+                </ul>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Core Features & Design Solution</h3>
+                <p>Sleep Survey helps users achieve mental clarity through interactive morning reflection:</p>
+                <ul>
+                    <li><strong>Morning Log:</strong> Rate sleep quality and emotions upon waking</li>
+                    <li><strong>Dream Categorization:</strong> Log dreams as one of five types (dream, nightmare, lucid dream, recurring dream, or no dream)</li>
+                    <li><strong>Interactive Questioning:</strong> Answer prompts about dreams to increase alertness and understanding</li>
+                    <li><strong>AI Analysis:</strong> Receive psychological insights and emotion tags (fear, uncertainty, relief, anxiety)</li>
+                    <li><strong>Stressor Tracking:</strong> Connect daily life events to dream content (e.g., bad test grade → nightmare about future)</li>
+                    <li><strong>Calendar Visualization:</strong> Color-coded monthly view to identify sleep patterns</li>
+                </ul>
+                <p>The calming purple interface promotes relaxation while the structured prompts help users fully wake up and gain clarity.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>User Flow</h3>
+                <div class="image-grid">
+                    <img src="images/SurveyLoading.png" alt="Sleep Survey splash screen" class="case-study-image">
+                    <img src="images/SurveyLog.png" alt="Login screen" class="case-study-image">
+                    <img src="images/SurveyCalendar.png" alt="Dream calendar with color-coded entries" class="case-study-image">
+                    <img src="images/SurveyAcc.png" alt="Account settings" class="case-study-image">
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Dream Journaling Experience</h3>
+                <div class="image-grid">
+                    <img src="images/SurveyChoice.png" alt="Dream type selection" class="case-study-image">
+                    <img src="images/SurveyRating.png" alt="Sleep quality rating" class="case-study-image">
+                    <img src="images/SurveyAnswer.png" alt="Journal entry with text input" class="case-study-image">
+                    <img src="images/SurveyAnalysis.png" alt="AI dream analysis with psychological insights" class="case-study-image">
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Iteration Process</h3>
+                <p>The design evolved through multiple iteration cycles with continuous team collaboration:</p>
+                <p><strong>First Iteration:</strong> Basic login, sleep rating feature, calendar view, and initial AI integration</p>
+                <p><strong>Final Iteration:</strong> Enhanced AI responses with empathetic tone, improved dream categorization system, refined calendar with better visual hierarchy, and more intuitive journal entry flow</p>
+                <p>User feedback revealed that the interactive questioning process successfully helped users wake up while the AI analysis provided meaningful insights into their emotional state.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Challenges & Learnings</h3>
+                <p><strong>Design Challenges:</strong></p>
+                <ul>
+                    <li>Limited dream categories - no "other" option if user's dream doesn't fit the five provided types</li>
+                    <li>Accessibility concern - heavy reliance on color coding rather than shapes/symbols makes it less colorblind-friendly</li>
+                    <li>Balancing comprehensive features with simplicity for groggy morning users</li>
+                </ul>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Key Takeaways</h3>
+                <p>Designing for wellness and mental health required careful consideration of tone, timing, and user emotional state. The project taught me that thoughtful micro-interactions - like the AI's empathetic responses - can significantly impact user comfort during vulnerable moments. Creating safe, non-judgmental digital spaces requires balancing functionality with emotional intelligence in every design decision.</p>
+                <p>Working in a collaborative team environment also reinforced the value of diverse perspectives in ideation and the importance of iterative feedback in refining user experience.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Interactive Prototype</h3>
+                <p>Explore the full Sleep Survey prototype below:</p>
+                <iframe class="figma-embed" src="https://embed.figma.com/proto/F1WxdVWhMPr8XcudAsaTD7/Sleep-Survey-App?node-id=0-1511&starting-point-node-id=0%3A733&embed-host=share" allowfullscreen></iframe>
+            </div>
+
+            <div class="project-navigation">
+                <a href="#greenway-modal" class="nav-project prev" onclick="event.preventDefault(); closeModal('sleep-survey'); openModal('greenway');">← Previous: GreenWay</a>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h2>Let's Connect</h2>
+                <p>I'm always interested in new opportunities and collaborations</p>
+                <div class="contact-links">
+                    <a href="mailto:chau.gr@northeastern.edu" class="contact-btn">Email Me</a>
+                    <a href="https://www.linkedin.com/in/grchau/" target="_blank" class="contact-btn">LinkedIn</a>
+                    <a href="images/resume.pdf" download class="contact-btn">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="image-lightbox" class="image-lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" onclick="navigateLightbox(1)">›</button>
+        <img id="lightbox-image" class="lightbox-content" src="" alt="">
+    </div>
+
+    <script>
+        function openModal(projectId) {
+            document.getElementById(projectId + '-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(projectId) {
+            document.getElementById(projectId + '-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Image lightbox functionality
+        let currentImageIndex = 0;
+        let allImages = [];
+
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            
+            // Get all case study images that are currently visible in the DOM
+            allImages = Array.from(document.querySelectorAll('.case-study-image'));
+            currentImageIndex = allImages.findIndex(img => img.src === imageSrc);
+            
+            lightboxImage.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            updateNavigationButtons();
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('image-lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateLightbox(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) currentImageIndex = 0;
+            if (currentImageIndex >= allImages.length) currentImageIndex = allImages.length - 1;
+            
+            const lightboxImage = document.getElementById('lightbox-image');
+            lightboxImage.src = allImages[currentImageIndex].src;
+            
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('lightbox-prev');
+            const nextBtn = document.getElementById('lightbox-next');
+            
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === allImages.length - 1;
+        }
+
+        // Add click handlers to all case study images
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.case-study-image');
+            images.forEach(img => {
+                img.addEventListener('click', function() {
+                    openLightbox(this.src);
+                });
+            });
+        });
+
+        // Close lightbox when clicking outside the image
+        document.getElementById('image-lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('image-lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                }
+            }
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', function() {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+        });
+
+        // Parallax effect on hero and about sections
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const about = document.querySelector('.about');
+            
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            if (about && scrolled > about.offsetTop - window.innerHeight) {
+                const aboutScroll = scrolled - (about.offsetTop - window.innerHeight);
+                about.style.backgroundPositionY = `${aboutScroll * 0.3}px`;
+            }
+        });
+
+        // 3D tilt effect on project cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.project-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                });
+            });
+        });
+
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('dark-mode-toggle').innerHTML = isDark ? '◑' : '◐';
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-toggle').innerHTML = '◑';
+        }
+    </script>
+</body>
+</html>
