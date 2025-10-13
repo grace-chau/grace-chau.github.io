@@ -68,173 +68,6 @@
             color: #1a1a1a;
         }
 
-        .project-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid #e8f5e9;
-        }
-
-        body.dark-mode .project-navigation {
-            border-top-color: #3a3a3a;
-        }
-
-        .nav-project {
-            text-decoration: none;
-            color: #2d5f3f;
-            padding: 1rem 2rem;
-            border: 2px solid #2d5f3f;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-project:hover {
-            background: #2d5f3f;
-            color: white;
-            transform: translateX(5px);
-        }
-
-        .nav-project.prev:hover {
-            transform: translateX(-5px);
-        }
-
-        body.dark-mode .nav-project {
-            color: #7cb89d;
-            border-color: #7cb89d;
-        }
-
-        body.dark-mode .nav-project:hover {
-            background: #7cb89d;
-            color: #1a1a1a;
-        }
-
-        .availability-badge {
-            display: inline-block;
-            background: #e8f5e9;
-            color: #2d5f3f;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: 1rem;
-        }
-
-        /* Dark Mode Styles */
-        body.dark-mode {
-            background: linear-gradient(-45deg, #1a2e20, #0d1f14, #243329, #1a2e20);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
-            color: #e0e0e0;
-        }
-
-        body.dark-mode .availability-badge {
-            background: #2d5f3f;
-            color: #e0e0e0;
-        }
-
-        body.dark-mode header {
-            background: #2d2d2d;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-
-        body.dark-mode .logo {
-            color: #7cb89d;
-        }
-
-        body.dark-mode .nav-links a {
-            color: #b0b0b0;
-        }
-
-        body.dark-mode .nav-links a:hover {
-            color: #7cb89d;
-        }
-
-        body.dark-mode .hero h1,
-        body.dark-mode .section-title,
-        body.dark-mode .about-text h2,
-        body.dark-mode .modal-title,
-        body.dark-mode .case-study-section h3,
-        body.dark-mode .skill-category h3,
-        body.dark-mode .project-title {
-            color: #7cb89d;
-        }
-
-        body.dark-mode .hero p,
-        body.dark-mode .hero-subtitle,
-        body.dark-mode .about-text p,
-        body.dark-mode .project-description,
-        body.dark-mode .project-meta,
-        body.dark-mode .case-study-section p,
-        body.dark-mode .case-study-section ul,
-        body.dark-mode .skill-category p,
-        body.dark-mode .modal-subtitle {
-            color: #c0c0c0;
-        }
-
-        body.dark-mode .project-card,
-        body.dark-mode .about,
-        body.dark-mode .modal-content {
-            background: rgba(26, 46, 32, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-        }
-
-        body.dark-mode .project-card:hover {
-            box-shadow: 0 12px 32px rgba(0,0,0,0.6);
-        }
-
-        body.dark-mode .btn-primary {
-            background: #2d5f3f;
-            color: #e0e0e0;
-        }
-
-        body.dark-mode .btn-secondary {
-            background: transparent;
-            color: #7cb89d;
-            border-color: #7cb89d;
-        }
-
-        body.dark-mode .tag {
-            background: #3a3a3a;
-            color: #7cb89d;
-        }
-
-        body.dark-mode .highlight-box {
-            background: #3a3a3a;
-            border-left-color: #7cb89d;
-        }
-
-        body.dark-mode .highlight-box strong {
-            color: #7cb89d;
-        }
-
-        body.dark-mode .close-modal {
-            color: #b0b0b0;
-        }
-
-        body.dark-mode .close-modal:hover {
-            color: #e0e0e0;
-        }
-
-        body.dark-mode footer {
-            background: #1a1a1a;
-        }
-
-        body.dark-mode .contact-btn {
-            background: #2d5f3f;
-            color: #e0e0e0;
-        }
-
-        body.dark-mode .dark-mode-toggle {
-            background: #7cb89d;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -327,6 +160,11 @@
             animation: fadeIn 1s ease 0.7s backwards;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .availability-badge {
             display: inline-block;
             background: #e8f5e9;
@@ -394,30 +232,6 @@
             }
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: #2d5f3f;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1rem;
-            color: #999;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
         .btn {
             padding: 0.8rem 2rem;
             border-radius: 8px;
@@ -441,6 +255,96 @@
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .projects {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #2d5f3f;
+        }
+
+        .subsection-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            margin-top: 4rem;
+            color: #2d5f3f;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2d5f3f;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #e8f5e9;
+            color: #2d5f3f;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
 
         .about {
@@ -508,90 +412,6 @@
         .skill-category p {
             color: #666;
             font-size: 0.95rem;
-        }
-
-        .projects {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: #2d5f3f;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .project-card:hover {
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            transform: translateY(-8px);
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.05);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #2d5f3f;
-        }
-
-        .project-meta {
-            font-size: 0.9rem;
-            color: #999;
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background: #e8f5e9;
-            color: #2d5f3f;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
         }
 
         .modal {
@@ -819,6 +639,52 @@
             font-size: 1.1rem;
         }
 
+        .project-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e8f5e9;
+        }
+
+        body.dark-mode .project-navigation {
+            border-top-color: #3a3a3a;
+        }
+
+        .nav-project {
+            text-decoration: none;
+            color: #2d5f3f;
+            padding: 1rem 2rem;
+            border: 2px solid #2d5f3f;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-project:hover {
+            background: #2d5f3f;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .nav-project.prev:hover {
+            transform: translateX(-5px);
+        }
+
+        body.dark-mode .nav-project {
+            color: #7cb89d;
+            border-color: #7cb89d;
+        }
+
+        body.dark-mode .nav-project:hover {
+            background: #7cb89d;
+            color: #1a1a1a;
+        }
+
         footer {
             background: #2d5f3f;
             color: white;
@@ -853,6 +719,114 @@
         .contact-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(-45deg, #1a2e20, #0d1f14, #243329, #1a2e20);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .availability-badge {
+            background: #2d5f3f;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode header {
+            background: rgba(45, 45, 45, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .logo {
+            color: #7cb89d;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .nav-links a:hover {
+            color: #7cb89d;
+        }
+
+        body.dark-mode .hero h1,
+        body.dark-mode .section-title,
+        body.dark-mode .subsection-title,
+        body.dark-mode .about-text h2,
+        body.dark-mode .modal-title,
+        body.dark-mode .case-study-section h3,
+        body.dark-mode .skill-category h3,
+        body.dark-mode .project-title {
+            color: #7cb89d;
+        }
+
+        body.dark-mode .hero p,
+        body.dark-mode .hero-subtitle,
+        body.dark-mode .about-text p,
+        body.dark-mode .project-description,
+        body.dark-mode .project-meta,
+        body.dark-mode .case-study-section p,
+        body.dark-mode .case-study-section ul,
+        body.dark-mode .skill-category p,
+        body.dark-mode .modal-subtitle {
+            color: #c0c0c0;
+        }
+
+        body.dark-mode .project-card,
+        body.dark-mode .about,
+        body.dark-mode .modal-content {
+            background: rgba(26, 46, 32, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode .project-card:hover {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+        }
+
+        body.dark-mode .btn-primary {
+            background: #2d5f3f;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .btn-secondary {
+            background: transparent;
+            color: #7cb89d;
+            border-color: #7cb89d;
+        }
+
+        body.dark-mode .tag {
+            background: #3a3a3a;
+            color: #7cb89d;
+        }
+
+        body.dark-mode .highlight-box {
+            background: #3a3a3a;
+            border-left-color: #7cb89d;
+        }
+
+        body.dark-mode .highlight-box strong {
+            color: #7cb89d;
+        }
+
+        body.dark-mode .close-modal {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .close-modal:hover {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode footer {
+            background: #1a1a1a;
+        }
+
+        body.dark-mode .contact-btn {
+            background: #2d5f3f;
+            color: #e0e0e0;
         }
 
         @media (max-width: 768px) {
@@ -908,8 +882,8 @@
         <nav class="container">
             <div class="logo">Grace Chau</div>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -974,6 +948,38 @@
                     </div>
                 </div>
             </div>
+
+            <h3 class="subsection-title">Additional Projects</h3>
+            <div class="project-grid">
+                <div class="project-card" onclick="openModal('filosofia')">
+                    <img src="images/Mockup1.jpg" alt="Filosofia Type Specimen Postcards" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Filosofia Type Specimen</h3>
+                        <p class="project-meta">Graphic Designer | September 2025 – October 2025</p>
+                        <p class="project-description">Designed a series of three postcards exploring the Filosofia typeface, showcasing its history, anatomy, and real-world applications through thoughtful typography and layout.</p>
+                        <div class="project-tags">
+                            <span class="tag">Typography</span>
+                            <span class="tag">Print Design</span>
+                            <span class="tag">Adobe InDesign</span>
+                            <span class="tag">Adobe Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openModal('influence-map')">
+                    <img src="images/Influence-Map.png" alt="Life Influences Folder Map" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Life Influences Map</h3>
+                        <p class="project-meta">Information Designer | February 2025</p>
+                        <p class="project-description">Created a visual map of present-day life influences organized as online folders, with file sizes representing importance across categories like taste in food, interests, social life, and culture.</p>
+                        <div class="project-tags">
+                            <span class="tag">Information Design</span>
+                            <span class="tag">Data Visualization</span>
+                            <span class="tag">Adobe Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -986,7 +992,7 @@
                 <div class="about-text">
                     <h2>About Me</h2>
                     <p>Hi! I'm Grace, a Computer Science and Design student at Northeastern University with a passion for creating intuitive, user-centered digital experiences.</p>
-                    <p>I believe great design happens at the intersection of creativity, innovation, and user research. I always aim to approach every project with curiousity, the willingness to learn, and attention to detail.</p>
+                    <p>I believe great design happens at the intersection of creativity, innovation, and user research. I always aim to approach every project with curiosity, the willingness to learn, and attention to detail.</p>
                     <p>When I'm not designing, I love exploring Boston with my camera, playing tennis, and discovering new music.</p>
                     
                     <div class="skills-grid">
@@ -1057,7 +1063,7 @@
 
             <div class="case-study-section">
                 <h3>Menu Design Process</h3>
-                <p>For the game's pause menu, I intitially created ten different menu concepts that each explored different menu layouts and styles. After revieving feedback from the rest of the team, I continued to iterate and make improvements to the design before ending up with the final version. Before starting my concept sketches, I had also conducted researched and created a moodboard consisting of the pause menus of different games along with the general style I was aiming for to gain more inspiration that I later presented to the team. Going into the design process, the visual team knew that we wanted the menu to follow a steampunk aesthetic to complement the game's overall theme while maintaining clear usability.</p>
+                <p>For the game's pause menu, I initially created ten different menu concepts that each explored different menu layouts and styles. After receiving feedback from the rest of the team, I continued to iterate and make improvements to the design before ending up with the final version. Before starting my concept sketches, I had also conducted research and created a moodboard consisting of the pause menus of different games along with the general style I was aiming for to gain more inspiration that I later presented to the team. Going into the design process, the visual team knew that we wanted the menu to follow a steampunk aesthetic to complement the game's overall theme while maintaining clear usability.</p>
                 <div class="image-grid">
                     <img src="images/UMC1.jpg" alt="Pause menu with decorative frame" class="case-study-image">
                     <img src="images/UMC2.jpg" alt="Menu design iterations" class="case-study-image">
@@ -1067,7 +1073,7 @@
 
             <div class="case-study-section">
                 <h3>Steam Gauge Process</h3>
-                <p>Another key UI asset that I designed for Planet Pesto was the steam gauge which served as a resource meter in the game for the player's dash ability. Over ten concept versions, I explored many different visual approaches from circular gauges to horizontal bars while continuting to revise and rework following feedback from the design team.</p>
+                <p>Another key UI asset that I designed for Planet Pesto was the steam gauge which served as a resource meter in the game for the player's dash ability. Over ten concept versions, I explored many different visual approaches from circular gauges to horizontal bars while continuing to revise and rework following feedback from the design team.</p>
                 <div class="image-grid">
                     <img src="images/SGC1.jpg" alt="Steam gauge circular designs" class="case-study-image">
                     <img src="images/SGC2.jpg" alt="Vertical gauge variations" class="case-study-image">
@@ -1253,6 +1259,90 @@
         </div>
     </div>
 
+    <div id="filosofia-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('filosofia')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Filosofia Type Specimen</h2>
+                <p class="modal-subtitle">Graphic Designer | September 2025 – October 2025</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Project Overview</h3>
+                <p>This type specimen project showcases the Filosofia typeface through a series of three carefully designed postcards. Filosofia, created by Zuzana Licko, is a geometric interpretation of Bodoni that maintains optimum legibility while honoring historical letterpress aesthetics.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Design Approach</h3>
+                <p>Each postcard explores a different aspect of the typeface:</p>
+                <ul>
+                    <li><strong>Card 1:</strong> Font history and background, featuring ornate Russian-inspired patterns</li>
+                    <li><strong>Card 2:</strong> Type anatomy and legibility features with detailed annotations</li>
+                    <li><strong>Card 3:</strong> Typeface specimen showing various weights and applications</li>
+                </ul>
+                <p>The design incorporates historical references to Bodoni's origins and Filosofia's connection to Italian culture, using warm red and gold tones paired with imagery from Russian literature and Italian architecture.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Postcard Designs</h3>
+                <div class="image-grid">
+                    <img src="images/Mockup1.jpg" alt="Filosofia postcards stacked" class="case-study-image">
+                    <img src="images/Mockup2.jpg" alt="Glyph composition postcard" class="case-study-image">
+                    <img src="images/Mockup3.jpg" alt="Front cover with Filosofia title" class="case-study-image">
+                    <img src="images/Mockup4.jpg" alt="Background and Filosofia Parma postcards" class="case-study-image">
+                    <img src="images/Mockup5.jpg" alt="Parma architecture postcard" class="case-study-image">
+                    <img src="images/Mockup6.jpg" alt="Type specimen postcard" class="case-study-image">
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Key Learnings</h3>
+                <p>This project deepened my understanding of typography, layout design, and how to communicate complex typographic concepts through visual design. It reinforced the importance of research in design work and how historical context can inform contemporary design decisions.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="influence-map-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('influence-map')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Life Influences Map</h2>
+                <p class="modal-subtitle">Information Designer | February 2025</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Project Overview</h3>
+                <p>This information design project visualizes present-day life influences through the metaphor of computer folders and files. The design maps various aspects of daily life—from taste in food to social connections—using file sizes to represent relative importance and influence.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Design Concept</h3>
+                <p>The project organizes life influences into eight main categories:</p>
+                <ul>
+                    <li>Taste in Food</li>
+                    <li>Interests</li>
+                    <li>Social Life</li>
+                    <li>Culture</li>
+                    <li>Personality</li>
+                    <li>Entertainment</li>
+                    <li>Academics</li>
+                    <li>Fashion</li>
+                </ul>
+                <p>Within each folder, individual files represent specific influences (friends, family, YouTube, TikTok, etc.), with their size indicating the strength of their impact. Colored connections between files visualize relationships and overlapping influences across different life areas.</p>
+            </div>
+
+            <div class="case-study-section">
+                <h3>Visual Design</h3>
+                <img src="images/Influence-Map.png" alt="Complete life influences folder map" class="case-study-image" style="width: 100%;">
+            </div>
+
+            <div class="case-study-section">
+                <h3>Key Learnings</h3>
+                <p>This project explored how familiar digital metaphors (folders and files) can be repurposed to communicate complex personal data. It challenged me to think about information hierarchy, visual relationships, and how to make abstract concepts tangible through thoughtful design choices.</p>
+            </div>
+        </div>
+    </div>
+
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
@@ -1316,7 +1406,6 @@
             const lightbox = document.getElementById('image-lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
             
-            // Get all case study images that are currently visible in the DOM
             allImages = Array.from(document.querySelectorAll('.case-study-image'));
             currentImageIndex = allImages.findIndex(img => img.src === imageSrc);
             
@@ -1370,7 +1459,7 @@
             }
         });
 
-        // Close lightbox with Escape key
+        // Close lightbox with Escape key and arrow navigation
         document.addEventListener('keydown', function(e) {
             const lightbox = document.getElementById('image-lightbox');
             if (lightbox.classList.contains('active')) {
@@ -1405,31 +1494,6 @@
                 const aboutScroll = scrolled - (about.offsetTop - window.innerHeight);
                 about.style.backgroundPositionY = `${aboutScroll * 0.3}px`;
             }
-        });
-
-        // 3D tilt effect on project cards
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.project-card');
-            
-            cards.forEach(card => {
-                card.addEventListener('mousemove', function(e) {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = (y - centerY) / 10;
-                    const rotateY = (centerX - x) / 10;
-                    
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-                });
-            });
         });
 
         // Dark mode toggle
